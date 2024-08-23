@@ -6,7 +6,8 @@ import org.hibernate.Transaction;
 
 public class Hibernate {
     
-     public static void main(String[] args) {
+     @SuppressWarnings("deprecation")
+    public static void main(String[] args) {
         SessionFactory sessionFactory = Hibernate.getSessionFactory();
         Transaction transaction = null;
 
@@ -18,7 +19,7 @@ public class Hibernate {
             Usuario usuario = new Usuario("Adrian Brody");
 
             // Guardar la entidad en la base de datos
-            session.save(usuario);
+            Object save = session. save(usuario);
 
             // Commit de la transacción
             transaction.commit();
@@ -32,6 +33,11 @@ public class Hibernate {
             // Cerrar el SessionFactory al final del programa
             HibernateUtil.shutdown();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Hibernate []";
     }
 
     private static SessionFactory getSessionFactory() {
